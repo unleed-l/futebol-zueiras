@@ -1,8 +1,8 @@
 # Futebol Zueiras - Football Joking
 
-App Android de compartilhamento de memes de futebol para você zuar os seus amigos do time rival a cada gol da partida!
+App Android de compartilhamento de memes de futebol para você zuar os seus amigos do time rival a cada gol da partida!!
 <br/>
-Soccer meme sharing Android app for you to make fun of your friends from the rival team with every goal of the match!
+Soccer meme sharing Android app for you to make fun of your friends from the rival team with every goal of the match!!
 
 ## Concepção
 * [Mapa Conceitual](https://imgur.com/a/VPmzP5f)
