@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
@@ -10,15 +11,15 @@
     tools:context=".UploadFragment">
 
     <ImageView
-        android:id="@+id/imageView6"
+        android:id="@+id/image_meme"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="300dp"
         android:layout_marginTop="40dp"
         app:srcCompat="@drawable/random_guest"
         tools:src="@drawable/random_guest" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/btn_choose_file"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="40dp"
@@ -26,7 +27,7 @@
         android:text="@string/upload_meme" />
 
     <EditText
-        android:id="@+id/editTextText4"
+        android:id="@+id/et_description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -36,7 +37,7 @@
         android:inputType="text" />
 
     <EditText
-        android:id="@+id/editTextText5"
+        android:id="@+id/et_tag"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -46,7 +47,7 @@
         android:inputType="text" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btn_send"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/post_meme" />
