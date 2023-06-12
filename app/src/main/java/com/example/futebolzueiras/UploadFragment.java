@@ -65,9 +65,8 @@ public class UploadFragment extends Fragment {
         // Instanciado no main activity
         // MainActivity.sqLiteHelper = new SQLiteHelper(getActivity(), "MemeDB.sqlite" , null , 1);
 
-        // Apenas para testes
-        //sqLiteHelper.queryData("DROP TABLE IF EXISTS MEME");
-
+        //Apenas para testes
+        //MainActivity.sqLiteHelper.queryData("DROP TABLE IF EXISTS MEME");
 
         MainActivity.sqLiteHelper.queryData("CREATE TABLE IF NOT EXISTS MEME (Id INTEGER PRIMARY KEY AUTOINCREMENT, description VARCHAR ,tag VARCHAR,  image BLOB)");
 
@@ -94,7 +93,7 @@ public class UploadFragment extends Fragment {
                     Toast.makeText(getActivity(), "Added successfully!", Toast.LENGTH_SHORT).show();
                     et_description.setText("");
                     et_tag.setText("");
-                    imageView.setImageResource(R.mipmap.ic_launcher);
+                    imageView.setImageResource(R.drawable.random_guest);
 
                     // Mudar pro fragment de profile
                     ((MainActivity) requireActivity()).replaceFragment(new ProfileFragment());
@@ -105,8 +104,6 @@ public class UploadFragment extends Fragment {
             }
         });
 
-
-
         return view;
     }
 
@@ -115,7 +112,19 @@ public class UploadFragment extends Fragment {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
         byte[] byteArray = stream.toByteArray();
-        return byteArray;
+        return resizeImage(byteArray);
+    }
+
+    private byte[] resizeImage(byte[] imagem_img){
+
+        while (imagem_img.length > 500000){
+            Bitmap bitmap = BitmapFactory.decodeByteArray(imagem_img, 0, imagem_img.length);
+            Bitmap resized = Bitmap.createScaledBitmap(bitmap, (int)(bitmap.getWidth()*0.8), (int)(bitmap.getHeight()*0.8), true);
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            resized.compress(Bitmap.CompressFormat.PNG, 100, stream);
+            imagem_img = stream.toByteArray();
+        }
+        return imagem_img;
     }
 
     private void requestStoragePermission() {

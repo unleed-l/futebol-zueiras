@@ -31,7 +31,6 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         statement.bindBlob(3, image);
 
         statement.executeInsert();
-
     }
 
 
@@ -49,8 +48,5 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
 
     }
-
-
-
 
 }

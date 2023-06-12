@@ -36,6 +36,8 @@ public class ProfileFragment extends Fragment {
         gridView.setAdapter(adapter);
 
         // get all data from sqlite
+
+
         Cursor cursor = MainActivity.sqLiteHelper.getData("SELECT * FROM MEME");
         list.clear();
         while (cursor.moveToNext()) {
@@ -46,6 +48,7 @@ public class ProfileFragment extends Fragment {
 
             list.add(new Meme(id ,description , tag , image));
         }
+        cursor.close(); // Fechar o cursor após o uso
         adapter.notifyDataSetChanged();
 
         return view;

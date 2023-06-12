@@ -1,5 +1,6 @@
 package com.example.futebolzueiras;
 
+import android.database.Cursor;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,6 +8,9 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridView;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -14,6 +18,11 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class HomeFragment extends Fragment {
+
+
+    GridView gridView;
+    ArrayList<Meme> list;
+    MemeListHomeAdapter adapter = null;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -59,6 +68,31 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        View view =  inflater.inflate(R.layout.fragment_home, container, false);
+
+
+        gridView = (GridView) view.findViewById(R.id.memeView);
+        list = new ArrayList<>();
+        // get context or get activity
+        adapter = new MemeListHomeAdapter(requireContext(), R.layout.grid_item, list);
+        gridView.setAdapter(adapter);
+
+        // get all data from sqlite
+
+        Cursor cursor = MainActivity.sqLiteHelper.getData("SELECT * FROM MEME");
+        list.clear();
+        while (cursor.moveToNext()) {
+            int id = cursor.getInt(0);
+            String description = cursor.getString(1);
+            String tag = cursor.getString(2);
+            byte[] image = cursor.getBlob(3);
+
+            list.add(new Meme(id ,description , tag , image));
+        }
+        cursor.close(); // Fechar o cursor após o uso
+        adapter.notifyDataSetChanged();
+
+        return view;
     }
+
 }
