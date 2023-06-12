@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">Futebol Zueiras</string>
+    <string name="open_menu">Abrir Menu Lateral</string>
+    <string name="close_menu">Fechar Menu Lateral</string>
+
+    <!-- Strings on Bottom Navigation  -->
+    <string name="profile_">Perfil</string>
+    <string name="send">Enviar</string>
+    <string name="downloads">Baixados</string>
+    <string name="favorites">Favoritos</string>
+
+    <!-- Strings on Side Navigation  -->
+    <string name="anonymous">Anônimo</string>
+    <string name="explore">Explorar</string>
+    <string name="premium">Premium</string>
+    <string name="ranking">Classificação</string>
+    <string name="points">Pontos</string>
+    <string name="map">Mapa</string>
+    <string name="lucky_wheel">Roda da sorte</string>
+    <string name="chat">Chat</string>
+    <string name="share">Compartilhar</string>
+    <string name="logout">Sair</string>
+
+
+    <!-- Strings on Upload -->
+    <string name="description">Descrição</string>
+    <string name="tag">Selecione uma tag para o meme</string>
+    <string name="upload_meme">Escolha o arquivo</string>
+    <string name="post_meme">Enviar</string>
+</resources>
