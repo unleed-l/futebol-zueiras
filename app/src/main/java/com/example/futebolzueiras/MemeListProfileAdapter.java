@@ -41,7 +41,7 @@ public class MemeListProfileAdapter extends BaseAdapter {
 
     private class ViewHolder{
         ImageView imageView;
-        TextView txtDescription, txtTag;
+        TextView txtDescription;
     }
 
     @Override
@@ -51,25 +51,34 @@ public class MemeListProfileAdapter extends BaseAdapter {
         ViewHolder holder = new ViewHolder();
 
         if(row == null){
+            // Inflar o layout do item da lista
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             row = inflater.inflate(layout, null);
 
-            holder.txtDescription = (TextView) row.findViewById(R.id.txtDescription);
-            holder.txtTag = (TextView) row.findViewById(R.id.txtTag);
-            holder.imageView = (ImageView) row.findViewById(R.id.imgMeme);
+
+            // Obter as referências às views do layout e armazená-las no ViewHolder
+            holder.txtDescription = (TextView) row.findViewById(R.id.meme_name);
+            holder.imageView = (ImageView) row.findViewById(R.id.grid_image);
+
+            // Armazenar o ViewHolder como uma tag na view
             row.setTag(holder);
         }
         else {
+            // Se a view já está sendo reutilizada, recuperar o ViewHolder da tag
             holder = (ViewHolder) row.getTag();
         }
 
+        // Obter o meme atual da lista
         Meme meme = memeList.get(position);
 
+        // Configurar os dados do meme nas view correspondente
         holder.txtDescription.setText(meme.getDescription());
-        holder.txtTag.setText(meme.getTag());
 
-        byte[] foodImage = meme.getImage();
-        Bitmap bitmap = BitmapFactory.decodeByteArray(foodImage, 0, foodImage.length);
+        // Decodificar o byte array da imagem em um objeto Bitmap
+        byte[] memeImage = meme.getImage();
+        Bitmap bitmap = BitmapFactory.decodeByteArray(memeImage, 0, memeImage.length);
+
+        // Configurar o Bitmap no ImageView
         holder.imageView.setImageBitmap(bitmap);
 
         return row;

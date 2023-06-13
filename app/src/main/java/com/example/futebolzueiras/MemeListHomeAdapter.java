@@ -50,23 +50,32 @@ public class MemeListHomeAdapter extends BaseAdapter {
         ViewHolder holder = new ViewHolder();
 
         if(row == null){
+            // Inflar o layout do item da lista
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             row = inflater.inflate(layout, null);
 
+            // Obter as referências às views do layout e armazená-las no ViewHolder
             holder.txtDescription = (TextView) row.findViewById(R.id.meme_name);
             holder.imageView = (ImageView) row.findViewById(R.id.grid_image);
+
+            // Armazenar o ViewHolder como uma tag na view
             row.setTag(holder);
         }
         else {
             holder = (ViewHolder) row.getTag();
         }
 
+        // Obter o meme atual da lista
         Meme meme = memeList.get(position);
 
+        // Configurar a descrição do meme na view correspondente
         holder.txtDescription.setText(meme.getDescription());
 
+        // Decodificar o byte array da imagem em um objeto Bitmap
         byte[] memeImage = meme.getImage();
         Bitmap bitmap = BitmapFactory.decodeByteArray(memeImage, 0, memeImage.length);
+
+        // Configurar o Bitmap no ImageView
         holder.imageView.setImageBitmap(bitmap);
 
         return row;

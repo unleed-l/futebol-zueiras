@@ -14,11 +14,13 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         super(context, name, factory, version);
     }
 
+    // Executa operações no banco
     public void queryData(String sql){
         SQLiteDatabase database = getWritableDatabase();
         database.execSQL(sql);
     }
 
+    // Insere memes
     public void insertMeme(String description, String tag, byte[] image) {
         SQLiteDatabase database = getWritableDatabase();
         String sql = "INSERT INTO MEME VALUES (NULL, ? , ?  ,?)";
@@ -34,6 +36,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     }
 
 
+    // Retorna todos os memes
     public Cursor getData(String sql){
         SQLiteDatabase database = getReadableDatabase();
         return database.rawQuery(sql , null);

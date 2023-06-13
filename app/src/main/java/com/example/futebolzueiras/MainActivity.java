@@ -17,29 +17,31 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity {
-
     DrawerLayout drawerLayout;
     BottomNavigationView bottomNavigationView;
-
     public static SQLiteHelper sqLiteHelper;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Instancia classe de gerenciamento de banco de dados que é utilizada nos fragments
         sqLiteHelper = new SQLiteHelper(this, "MemeDB.sqlite" , null , 1);
 
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         drawerLayout = findViewById(R.id.drawer_layout);
-        //NavigationView navigationView = findViewById(R.id.nav_view);
-        Toolbar toolbar = findViewById(R.id.toolbar);
 
+        // Funcional Navigation Drawer que ainda não foi implementado.
+        //NavigationView navigationView = findViewById(R.id.nav_view);
+
+        // Toogle da UI do Navigation Drawer não funcional
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this , drawerLayout , toolbar , R.string.open_menu , R.string.close_menu);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
+        // Aplicar highlight no primeiro item do Navigation Drawer
         /*
         if(savedInstanceState == null){
             getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, new HomeFragment()).commit();
@@ -47,8 +49,11 @@ public class MainActivity extends AppCompatActivity {
         }
         */
 
+        // Determina o primeiro fragment como fragment inicial
         replaceFragment(new HomeFragment());
+
         bottomNavigationView.setBackground(null);
+        // Alterna de fragment de acordo com item clicado
         bottomNavigationView.setOnItemSelectedListener(item -> {
 
             if(item.getItemId() == R.id.home){
@@ -57,8 +62,7 @@ public class MainActivity extends AppCompatActivity {
                 replaceFragment(new ProfileFragment());
             } else if(item.getItemId() == R.id.upload){
                 replaceFragment(new UploadFragment());
-            }
-            else if(item.getItemId() == R.id.downloads){
+            } else if(item.getItemId() == R.id.downloads){
                 replaceFragment(new DownloadsFragment());
             } else if(item.getItemId() == R.id.favorites){
                 replaceFragment(new FavoritesFragment());
@@ -68,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    // Função responsável pelo gerenciamento dos fragments
     public void replaceFragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
