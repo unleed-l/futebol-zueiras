@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -13,14 +14,24 @@ import java.util.ArrayList;
 
 public class MemeListHomeAdapter extends BaseAdapter {
 
+    public interface OnItemClickListener {
+        void onItemClick(Meme meme);
+    }
+
     private Context context;
     private int layout;
     private ArrayList<Meme> memeList;
+
+    private OnItemClickListener clickListener;
 
     public MemeListHomeAdapter(Context context, int layout, ArrayList<Meme> memeList) {
         this.context = context;
         this.layout = layout;
         this.memeList = memeList;
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.clickListener = listener;
     }
 
     @Override
@@ -41,6 +52,8 @@ public class MemeListHomeAdapter extends BaseAdapter {
     private class ViewHolder{
         ImageView imageView;
         TextView txtDescription;
+
+
     }
 
     @Override
@@ -77,6 +90,16 @@ public class MemeListHomeAdapter extends BaseAdapter {
 
         // Configurar o Bitmap no ImageView
         holder.imageView.setImageBitmap(bitmap);
+
+        // Configurar o clique no item da GridView
+        row.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (clickListener != null) {
+                    clickListener.onItemClick(meme);
+                }
+            }
+        });
 
         return row;
     }

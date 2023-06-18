@@ -130,6 +130,7 @@ public class UploadFragment extends Fragment {
         SharedPreferences.Editor editor = upload_preferences.edit();
         editor.putString("description", descriptionValue);
         editor.putString("tag", tagValue);
+
         editor.commit();
     }
 

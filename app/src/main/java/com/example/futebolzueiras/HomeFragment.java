@@ -1,5 +1,6 @@
 package com.example.futebolzueiras;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 
@@ -9,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -36,7 +38,20 @@ public class HomeFragment extends Fragment {
 
         // Crie uma instância do adaptador para o GridView e defina o adaptador para o GridView
         adapter = new MemeListHomeAdapter(requireContext(), R.layout.grid_item, list);
+        adapter.setOnItemClickListener(new MemeListHomeAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Meme meme) {
+                Intent intent = new Intent(requireContext(), MemeInteractions.class);
+                intent.putExtra("meme_description", meme.getDescription());
+                intent.putExtra("meme_tag", meme.getTag());
+                intent.putExtra("meme_image" , meme.getImage());
+                Toast.makeText(requireContext(), meme.getDescription(), Toast.LENGTH_SHORT).show();
+                startActivity(intent);
+            }
+        });
+
         gridView.setAdapter(adapter);
+
 
         Cursor cursor = MainActivity.sqLiteHelper.getData("SELECT * FROM MEME");
         list.clear();
