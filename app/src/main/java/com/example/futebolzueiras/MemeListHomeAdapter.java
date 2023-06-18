@@ -6,22 +6,32 @@ import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import java.util.ArrayList;
 
-public class MemeListProfileAdapter extends BaseAdapter {
+public class MemeListHomeAdapter extends BaseAdapter {
+
+    public interface OnItemClickListener {
+        void onItemClick(Meme meme);
+    }
 
     private Context context;
     private int layout;
     private ArrayList<Meme> memeList;
 
-    public MemeListProfileAdapter(Context context, int layout, ArrayList<Meme> memeList) {
+    private OnItemClickListener clickListener;
+
+    public MemeListHomeAdapter(Context context, int layout, ArrayList<Meme> memeList) {
         this.context = context;
         this.layout = layout;
         this.memeList = memeList;
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.clickListener = listener;
     }
 
     @Override
@@ -42,6 +52,8 @@ public class MemeListProfileAdapter extends BaseAdapter {
     private class ViewHolder{
         ImageView imageView;
         TextView txtDescription;
+
+
     }
 
     @Override
@@ -55,7 +67,6 @@ public class MemeListProfileAdapter extends BaseAdapter {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             row = inflater.inflate(layout, null);
 
-
             // Obter as referências às views do layout e armazená-las no ViewHolder
             holder.txtDescription = (TextView) row.findViewById(R.id.meme_name);
             holder.imageView = (ImageView) row.findViewById(R.id.grid_image);
@@ -64,14 +75,13 @@ public class MemeListProfileAdapter extends BaseAdapter {
             row.setTag(holder);
         }
         else {
-            // Se a view já está sendo reutilizada, recuperar o ViewHolder da tag
             holder = (ViewHolder) row.getTag();
         }
 
         // Obter o meme atual da lista
         Meme meme = memeList.get(position);
 
-        // Configurar os dados do meme nas view correspondente
+        // Configurar a descrição do meme na view correspondente
         holder.txtDescription.setText(meme.getDescription());
 
         // Decodificar o byte array da imagem em um objeto Bitmap
@@ -80,6 +90,16 @@ public class MemeListProfileAdapter extends BaseAdapter {
 
         // Configurar o Bitmap no ImageView
         holder.imageView.setImageBitmap(bitmap);
+
+        // Configurar o clique no item da GridView
+        row.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (clickListener != null) {
+                    clickListener.onItemClick(meme);
+                }
+            }
+        });
 
         return row;
     }

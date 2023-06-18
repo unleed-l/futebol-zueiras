@@ -6,12 +6,13 @@
     android:background="@color/white"
     tools:context=".HomeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <GridView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:id="@+id/memeView"
+        android:numColumns="2"
         android:gravity="center"
-        android:text="Home"
-        android:textColor="@color/black" />
+        android:horizontalSpacing="8dp"
+        />
 
 </FrameLayout>
