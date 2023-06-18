@@ -2,8 +2,24 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.FutebolZueiras" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/light_green</item>
     </style>
 
     <style name="Theme.FutebolZueiras" parent="Base.Theme.FutebolZueiras" />
+
+    <style name="DialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/slide_in</item>
+        <item name="android:windowExitAnimation">@anim/slide_out</item>
+    </style>
+
+    <style name="Theme.FutebolZueiras.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.FutebolZueiras.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.FutebolZueiras.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
 </resources>

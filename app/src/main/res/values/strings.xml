@@ -1,3 +1,46 @@
 <resources>
     <string name="app_name">Futebol Zueiras</string>
+    <string name="open_menu">Abrir Menu Lateral</string>
+    <string name="close_menu">Fechar Menu Lateral</string>
+
+    <!-- Strings on Bottom Navigation  -->
+    <string name="profile_">Perfil</string>
+    <string name="send">Enviar</string>
+    <string name="downloads">Baixados</string>
+    <string name="favorites">Favoritos</string>
+
+    <!-- Strings on Side Navigation  -->
+    <string name="anonymous">Anônimo</string>
+    <string name="explore">Explorar</string>
+    <string name="premium">Premium</string>
+    <string name="ranking">Classificação</string>
+    <string name="points">Pontos</string>
+    <string name="map">Mapa</string>
+    <string name="lucky_wheel">Roda da sorte</string>
+    <string name="chat">Chat</string>
+    <string name="share">Compartilhar</string>
+    <string name="logout">Sair</string>
+
+
+    <!-- Strings on Upload -->
+    <string name="description">Descrição</string>
+    <string name="tag">Selecione uma tag para o meme</string>
+    <string name="upload_meme">Escolha o arquivo</string>
+    <string name="post_meme">Enviar</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+
+    <!-- Preference Titles -->
+    <string name="messages_header">Messages</string>
+    <string name="sync_header">Sync</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">Your signature</string>
+    <string name="reply_title">Default reply action</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">Sync email periodically</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails
+    </string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
 </resources>

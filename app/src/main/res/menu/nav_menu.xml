@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn = "navigation_view">
+
+    <group
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_explore"
+            android:icon="@drawable/baseline_explore_24"
+            android:title="@string/explore"/>
+
+        <item
+            android:id="@+id/nav_premium"
+            android:icon="@drawable/baseline_celebration_24"
+            android:title="@string/premium"/>
+
+        <item
+            android:id="@+id/nav_ranking"
+            android:icon="@drawable/baseline_stadium_24"
+            android:title="@string/ranking"/>
+
+        <item
+            android:id="@+id/nav_points"
+            android:icon="@drawable/baseline_sports_score_24"
+            android:title="@string/points"/>
+
+        <item
+            android:id="@+id/nav_map"
+            android:icon="@drawable/baseline_map_24"
+            android:title="@string/map"/>
+
+        <item
+            android:id="@+id/nav_lucky"
+            android:icon="@drawable/baseline_camera_24"
+            android:title="@string/lucky_wheel"/>
+
+        <item
+            android:id="@+id/nav_chat"
+            android:icon="@drawable/baseline_chat_24"
+            android:title="@string/chat"/>
+
+        <item
+            android:id="@+id/nav_share"
+            android:icon="@drawable/baseline_share_24"
+            android:title="@string/share"/>
+    </group>
+    <item
+        android:title="">
+
+        <menu>
+            <item
+                android:id="@+id/nav_logout"
+                android:icon="@drawable/nav_logout"
+                android:title="@string/logout"/>
+        </menu>
+
+    </item>
+
+</menu>
