@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/green"
     android:gravity="center_horizontal"
     android:orientation="vertical"
     tools:context=".UploadFragment">
@@ -35,8 +35,7 @@
     <RelativeLayout
         android:id="@+id/profile_fragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-       >
+        android:layout_height="match_parent">
 
         <GridView
             android:id="@+id/gridView"
@@ -44,12 +43,12 @@
             android:layout_height="match_parent"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:background="@color/light_green"
+            android:background="@color/white"
             android:columnWidth="120dp"
             android:gravity="center"
+            android:horizontalSpacing="8dp"
             android:numColumns="auto_fit"
-            android:verticalSpacing="8dp"
-            android:horizontalSpacing="8dp"/>
+            android:verticalSpacing="8dp" />
     </RelativeLayout>
 
 

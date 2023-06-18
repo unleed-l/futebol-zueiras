@@ -50,10 +50,11 @@
             android:background="@null"/>
 
         <ImageButton
+            android:id="@+id/shareButton"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:src="@drawable/baseline_forward_24"
-            android:background="@null"/>
+            android:background="@null"
+            android:src="@drawable/baseline_forward_24" />
 
     </LinearLayout>
 
