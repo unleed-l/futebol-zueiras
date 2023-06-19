@@ -9,6 +9,7 @@
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
     <ImageView
+        android:id="@+id/image_nav"
         android:layout_width="110dp"
         android:layout_height="100dp"
         android:layout_gravity="bottom"

@@ -19,9 +19,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
-import android.preference.PreferenceManager;
 import android.provider.MediaStore;
-import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,9 +29,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 
 public class UploadFragment extends Fragment {
 
@@ -64,7 +60,7 @@ public class UploadFragment extends Fragment {
         et_tag = view.findViewById(R.id.et_tag);
         btn_send = view.findViewById(R.id.btn_send);
         btn_choose_file = view.findViewById(R.id.btn_choose_file);
-        imageView = (ImageView) view.findViewById(R.id.image_meme);
+        imageView = (ImageView) view.findViewById(R.id.image_profile);
 
         //MainActivity.sqLiteHelper.queryData("DROP TABLE IF EXISTS MEME");
         //MainActivity.sqLiteHelper.queryData("DELETE FROM MEME");
