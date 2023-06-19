@@ -19,6 +19,7 @@ Soccer meme sharing Android app for you to make fun of your friends from the riv
 * [Diagrama de casos de uso](https://drive.google.com/file/d/15PdondUtbGj40jnbhlsGDkOoIQm4m910/view?usp=sharing)
 * [Documento de requisitos](https://docs.google.com/document/d/1FZLLL1sCV2t2WJxkls6SG9Fuvc4Y_QB6A2oi8dETwjM/edit?usp=sharing)
 * [Histórias de Usuário](https://docs.google.com/document/d/1NfhzY0O-PYcWzn9kDnYcIbww3EWNI-AeV6ZrTfeWxvE/edit?usp=sharing)
+* [Vídeo de Apresentação - 1ª Versão](https://youtu.be/6zFd1gsSpPo)
 
 ## Autores
 * [Pedro Benevides](https://github.com/Pedro-Benevides)
