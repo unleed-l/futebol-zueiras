@@ -22,7 +22,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity {
-    DrawerLayout drawerLayout;
     BottomNavigationView bottomNavigationView;
     public static SQLiteHelper sqLiteHelper;
     @Override
@@ -34,30 +33,15 @@ public class MainActivity extends AppCompatActivity {
         sqLiteHelper = new SQLiteHelper(this, "MemeDB.sqlite" , null , 1);
 
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
-        drawerLayout = findViewById(R.id.drawer_layout);
 
-        // Funcional Navigation Drawer que ainda não foi implementado.
-        //NavigationView navigationView = findViewById(R.id.nav_view);
-
-        // Toogle da UI do Navigation Drawer não funcional
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this , drawerLayout , toolbar , R.string.open_menu , R.string.close_menu);
-        drawerLayout.addDrawerListener(toggle);
-        toggle.syncState();
-
-        // Aplicar highlight no primeiro item do Navigation Drawer
-        /*
-        if(savedInstanceState == null){
-            getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, new HomeFragment()).commit();
-            navigationView.setCheckedItem(R.id.nav_home);
-        }
-        */
 
         // Determina o primeiro fragment como fragment inicial
         replaceFragment(new HomeFragment());
 
         bottomNavigationView.setBackground(null);
+
         // Alterna de fragment de acordo com item clicado
         bottomNavigationView.setOnItemSelectedListener(item -> {
 
@@ -69,8 +53,6 @@ public class MainActivity extends AppCompatActivity {
                 replaceFragment(new UploadFragment());
             } else if(item.getItemId() == R.id.downloads){
                 replaceFragment(new DownloadsFragment());
-            } else if(item.getItemId() == R.id.favorites){
-                replaceFragment(new FavoritesFragment());
             }
 
             return true;
@@ -101,8 +83,6 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
-
 }

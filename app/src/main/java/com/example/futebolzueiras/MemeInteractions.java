@@ -15,7 +15,6 @@ import android.widget.TextView;
 import java.io.ByteArrayOutputStream;
 
 public class MemeInteractions extends AppCompatActivity {
-
     ImageView imgview;
     byte [] meme_image;
 
@@ -39,23 +38,12 @@ public class MemeInteractions extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                /*
-
-                Intent intent = new Intent(Intent.ACTION_SEND);
-              intent.setType("text/plain");
-              intent.putExtra(Intent.EXTRA_SUBJECT , "Check out this");
-              intent.putExtra(Intent.EXTRA_TEXT , "yOUR APLICAition link here");
-              startActivity(Intent.createChooser(intent , "Share via"));
-
-                */
-
                 Intent intent = new Intent(Intent.ACTION_SEND);
                 intent.setType("image/*");
                 byte[] imageBytes = meme_image;
                 intent.putExtra(Intent.EXTRA_STREAM, getImageUriFromBytes(imageBytes));
+                intent.putExtra(Intent.EXTRA_TEXT , "Link do app");
                 startActivity(Intent.createChooser(intent, "Compartilhar imagem via"));
-
-                // Log.d("ImageButton", "O botão foi tocado!");
             }
         });
     }

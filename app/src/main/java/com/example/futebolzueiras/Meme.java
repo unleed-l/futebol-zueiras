@@ -7,6 +7,16 @@ public class Meme {
     private String tag;
     private byte[] image;
 
+    public String getMemeURL() {
+        return memeURL;
+    }
+
+    public void setMemeURL(String memeURL) {
+        this.memeURL = memeURL;
+    }
+
+    String memeURL;
+
 
     public Meme(int id, String description, String tag, byte[] image) {
         this.id = id;
@@ -14,6 +24,12 @@ public class Meme {
         this.tag = tag;
         this.image = image;
     }
+
+    public Meme(String description, String tag){
+        this.description = description;
+        this.tag = tag;
+    }
+
 
     public int getId() {
         return id;

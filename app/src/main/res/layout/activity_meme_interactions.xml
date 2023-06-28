@@ -19,42 +19,11 @@
         android:padding="16dp">
 
         <ImageButton
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:src="@drawable/baseline_remove_red_eye_24"
-            android:background="@null"
-            android:layout_marginBottom="8dp"/>
-
-        <!-- Ícone de Curtir -->
-
-        <ImageButton
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:src="@drawable/baseline_thumb_up_24"
-            android:background="@null"
-            android:layout_marginBottom="8dp"/>
-
-        <!-- Ícone de Comentar -->
-        <ImageButton
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:src="@drawable/sharp_comment_24"
-            android:background="@null"
-            android:layout_marginBottom="8dp"/>
-
-        <!-- Ícone de Compartilhar -->
-        <ImageButton
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:src="@drawable/baseline_file_download_meme"
-            android:background="@null"/>
-
-        <ImageButton
             android:id="@+id/shareButton"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:background="@null"
-            android:src="@drawable/baseline_forward_24" />
+            android:src="@drawable/baseline_share_24" />
 
     </LinearLayout>
 

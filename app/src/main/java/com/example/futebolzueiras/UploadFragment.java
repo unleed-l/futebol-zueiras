@@ -1,8 +1,7 @@
 package com.example.futebolzueiras;
 
-// import static android.app.Activity.RESULT_OK;
-
 import android.Manifest;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,13 +11,6 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
-
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,15 +19,33 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 public class UploadFragment extends Fragment {
 
     EditText et_description , et_tag;
     Button btn_send, btn_choose_file;
     ImageView imageView;
+    Uri selectedImage;
+    String imageURL;
 
     private static SharedPreferences upload_preferences;
 
@@ -61,6 +71,7 @@ public class UploadFragment extends Fragment {
         btn_send = view.findViewById(R.id.btn_send);
         btn_choose_file = view.findViewById(R.id.btn_choose_file);
         imageView = (ImageView) view.findViewById(R.id.image_profile);
+
 
         //MainActivity.sqLiteHelper.queryData("DROP TABLE IF EXISTS MEME");
         //MainActivity.sqLiteHelper.queryData("DELETE FROM MEME");
@@ -91,12 +102,14 @@ public class UploadFragment extends Fragment {
             public void onClick(View view) {
                 // Insere registro do meme na tabela MEME
                 try{
+
+                    saveMemeOnFireBase();
+
                     MainActivity.sqLiteHelper.insertMeme(
                             et_description.getText().toString().trim(),
                             et_tag.getText().toString().trim(),
                             imageViewToByte(imageView)
                     );
-
 
                     Toast.makeText(getActivity(), "Added successfully!", Toast.LENGTH_SHORT).show();
 
@@ -116,6 +129,46 @@ public class UploadFragment extends Fragment {
 
         return view;
     }
+
+
+    public void saveMemeOnFireBase(){
+        StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("Meme Images")
+                .child(selectedImage.getLastPathSegment());
+        AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
+        builder.setCancelable(false);
+        //builder.setView(R.layout.progress_layout);
+        AlertDialog dialog = builder.create();
+        dialog.show();
+        storageReference.putFile(selectedImage).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
+                while (!uriTask.isComplete());
+                Uri urlImage = uriTask.getResult();
+                imageURL  = urlImage.toString();
+                uploadData();
+                dialog.dismiss();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                dialog.dismiss();
+            }
+        });
+    }
+
+    public void uploadData(){
+        String description = et_description.getText().toString().trim();
+        String tag = et_tag.getText().toString().trim();
+        Meme meme = new Meme(description, tag);
+        meme.setMemeURL(imageURL);
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+        String currentDate = dateFormat.format(new Date());
+        FirebaseDatabase.getInstance().getReference("Meme Teste").child(currentDate)
+                .setValue(meme);
+    }
+
 
     private void saveMemeData() {
         // Obter os valores dos formulários
@@ -211,7 +264,7 @@ public class UploadFragment extends Fragment {
         // Verifica se o resultado foi obtido a partir da solicitação de captura de imagem
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == getActivity().RESULT_OK && data != null) {
             // Obtém a imagem selecionada a partir dos dados retornados pela atividade
-            Uri selectedImage = data.getData();
+            selectedImage = data.getData();
             try {
                 // Converte para bitmap e seta no imageview
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), selectedImage);

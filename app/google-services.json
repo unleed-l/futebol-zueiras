@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "993269448253",
+    "project_id": "futebol-zueiras",
+    "storage_bucket": "futebol-zueiras.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:993269448253:android:9051f9ff5521d7482bf454",
+        "android_client_info": {
+          "package_name": "com.example.futebolzueiras"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "993269448253-1cmb41s82vneqp6pmcosqfi7be42evjm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDB8AsuvFDNFZ5C6vpWeIHc24XwVgopey4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "993269448253-1cmb41s82vneqp6pmcosqfi7be42evjm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

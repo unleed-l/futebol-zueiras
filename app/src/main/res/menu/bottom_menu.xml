@@ -23,9 +23,4 @@
         android:id="@+id/downloads"
         android:title="@string/downloads"
         android:icon="@drawable/baseline_collections_24" />
-    <item
-        android:id="@+id/favorites"
-        android:title="@string/favorites"
-        android:icon="@drawable/baseline_star_24" />
-
 </menu>

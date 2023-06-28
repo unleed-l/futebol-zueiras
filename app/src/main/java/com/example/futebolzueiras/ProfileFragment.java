@@ -21,8 +21,6 @@ public class ProfileFragment extends Fragment {
     ArrayList<Meme> list;
     MemeListProfileAdapter adapter = null;
 
-    ImageView photo_profile;
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,16 +31,6 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_profile, container, false);
-
-        photo_profile = view.findViewById(R.id.image_profile);
-        photo_profile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(requireContext(), "Cliquei no botão", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(requireContext(), LoginActivity.class);
-                startActivity(intent);
-            }
-        });
 
         // Encontre o GridView no layout pelo ID
         gridView = (GridView) view.findViewById(R.id.gridView);
