@@ -57,8 +57,8 @@ public class MemeListProfileAdapter extends BaseAdapter {
 
 
             // Obter as referências às views do layout e armazená-las no ViewHolder
-            holder.txtDescription = (TextView) row.findViewById(R.id.meme_name);
-            holder.imageView = (ImageView) row.findViewById(R.id.grid_image);
+            holder.txtDescription = (TextView) row.findViewById(R.id.memeDesc);
+            holder.imageView = (ImageView) row.findViewById(R.id.memeImage);
 
             // Armazenar o ViewHolder como uma tag na view
             row.setTag(holder);

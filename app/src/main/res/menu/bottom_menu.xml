@@ -8,19 +8,15 @@
         android:icon="@drawable/baseline_home_24"/>
 
     <item
-        android:id="@+id/profile"
-        android:title="@string/profile_"
-        android:icon="@drawable/baseline_person_24"
-        />
-
-    <item
         android:id="@+id/upload"
         android:title="@string/send"
         android:icon="@drawable/baseline_add_circle_24"
         />
 
     <item
-        android:id="@+id/downloads"
-        android:title="@string/downloads"
-        android:icon="@drawable/baseline_collections_24" />
+        android:id="@+id/profile"
+        android:title="@string/gallery"
+        android:icon="@drawable/baseline_collections_24"
+        />
+
 </menu>

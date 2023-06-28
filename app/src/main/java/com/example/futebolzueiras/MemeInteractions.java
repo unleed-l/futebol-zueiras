@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -12,26 +13,28 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
+
 import java.io.ByteArrayOutputStream;
 
 public class MemeInteractions extends AppCompatActivity {
     ImageView imgview;
-    byte [] meme_image;
+    String meme_image;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meme_interactions);
 
-        // Pega o array de bytes da imagem(meme)
-        meme_image = getIntent().getExtras().getByteArray("meme_image");
+        // Pega a imagem(meme)
+        meme_image = getIntent().getExtras().getString("Image");
 
         // Acha o imageView(Background da tela)
         imgview = findViewById(R.id.backgroundMeme);
 
-        // Decodifica a imagem e seta no imageView
-        Bitmap bitmap = BitmapFactory.decodeByteArray(meme_image, 0, meme_image.length);
-        imgview.setImageBitmap(bitmap);
+        //
+        Glide.with(this).load(meme_image).into(imgview);
 
         ImageButton shareButton = (ImageButton) findViewById(R.id.shareButton);
         shareButton.setOnClickListener(new View.OnClickListener() {
@@ -40,8 +43,9 @@ public class MemeInteractions extends AppCompatActivity {
 
                 Intent intent = new Intent(Intent.ACTION_SEND);
                 intent.setType("image/*");
-                byte[] imageBytes = meme_image;
-                intent.putExtra(Intent.EXTRA_STREAM, getImageUriFromBytes(imageBytes));
+                byte[] imageBytes = getBytesFromImageView(imgview);
+                Uri imageUri = getImageUriFromBytes(imageBytes);
+                intent.putExtra(Intent.EXTRA_STREAM, imageUri);
                 intent.putExtra(Intent.EXTRA_TEXT , "Link do app");
                 startActivity(Intent.createChooser(intent, "Compartilhar imagem via"));
             }
@@ -55,7 +59,11 @@ public class MemeInteractions extends AppCompatActivity {
         return Uri.parse(path);
     }
 
-
-
-
+    private byte[] getBytesFromImageView(ImageView imageView) {
+        BitmapDrawable drawable = (BitmapDrawable) imageView.getDrawable();
+        Bitmap bitmap = drawable.getBitmap();
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+        return stream.toByteArray();
+    }
 }

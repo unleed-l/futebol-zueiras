@@ -12,6 +12,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +32,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -46,6 +48,8 @@ public class UploadFragment extends Fragment {
     ImageView imageView;
     Uri selectedImage;
     String imageURL;
+
+    String description , tag;
 
     private static SharedPreferences upload_preferences;
 
@@ -71,6 +75,7 @@ public class UploadFragment extends Fragment {
         btn_send = view.findViewById(R.id.btn_send);
         btn_choose_file = view.findViewById(R.id.btn_choose_file);
         imageView = (ImageView) view.findViewById(R.id.image_profile);
+
 
 
         //MainActivity.sqLiteHelper.queryData("DROP TABLE IF EXISTS MEME");
@@ -100,11 +105,11 @@ public class UploadFragment extends Fragment {
         btn_send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Insere registro do meme na tabela MEME
-                try{
 
+                try{
                     saveMemeOnFireBase();
 
+                        // Insere registro do meme na tabela MEME
                     MainActivity.sqLiteHelper.insertMeme(
                             et_description.getText().toString().trim(),
                             et_tag.getText().toString().trim(),
@@ -114,9 +119,11 @@ public class UploadFragment extends Fragment {
                     Toast.makeText(getActivity(), "Added successfully!", Toast.LENGTH_SHORT).show();
 
                     // Após registrar seta os campos para default
+                    /*
                     et_description.setText("");
                     et_tag.setText("");
                     imageView.setImageResource(R.drawable.random_guest);
+                    */
 
                     // Muda pro fragment de profile
                     ((MainActivity) requireActivity()).replaceFragment(new ProfileFragment());
@@ -130,24 +137,38 @@ public class UploadFragment extends Fragment {
         return view;
     }
 
-
     public void saveMemeOnFireBase(){
         StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("Meme Images")
                 .child(selectedImage.getLastPathSegment());
         AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
         builder.setCancelable(false);
-        //builder.setView(R.layout.progress_layout);
         AlertDialog dialog = builder.create();
         dialog.show();
         storageReference.putFile(selectedImage).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
+                uriTask.addOnCompleteListener(new OnCompleteListener<Uri>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Uri> task) {
+                        if (task.isSuccessful()) {
+                            Uri urlImage = task.getResult();
+                            imageURL = urlImage.toString();
+                            uploadData();
+                        } else {
+                            // Tratar falha ao obter a URL da imagem
+                        }
+                        dialog.dismiss();
+                    }
+                });
+                /*
                 while (!uriTask.isComplete());
                 Uri urlImage = uriTask.getResult();
                 imageURL  = urlImage.toString();
                 uploadData();
                 dialog.dismiss();
+                */
+
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -158,17 +179,24 @@ public class UploadFragment extends Fragment {
     }
 
     public void uploadData(){
-        String description = et_description.getText().toString().trim();
-        String tag = et_tag.getText().toString().trim();
+       description = et_description.getText().toString();
+       tag = et_tag.getText().toString();
+
         Meme meme = new Meme(description, tag);
         meme.setMemeURL(imageURL);
 
+        Log.d("YourTag", "Description: " +description);
+        Log.d("YourTag", "Tag: " + tag);
+
+
+
+
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
         String currentDate = dateFormat.format(new Date());
+
         FirebaseDatabase.getInstance().getReference("Meme Teste").child(currentDate)
                 .setValue(meme);
     }
-
 
     private void saveMemeData() {
         // Obter os valores dos formulários
@@ -200,7 +228,6 @@ public class UploadFragment extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
-
         // Salvar os dados do formulário quando o fragmento estiver pausado
         saveMemeData();
     }

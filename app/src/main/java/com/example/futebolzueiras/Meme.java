@@ -30,6 +30,9 @@ public class Meme {
         this.tag = tag;
     }
 
+    public Meme() {
+
+    }
 
     public int getId() {
         return id;

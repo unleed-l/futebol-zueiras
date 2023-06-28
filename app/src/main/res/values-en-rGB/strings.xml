@@ -6,14 +6,12 @@
     <string name="profile_">Profile</string>
     <string name="send">Send</string>
     <string name="downloads">Downloads</string>
-    <string name="favorites">Favorites</string>
     <string name="anonymous">Anonymous</string>
     <string name="explore">Explore</string>
     <string name="premium">Premium</string>
     <string name="ranking">Ranking</string>
     <string name="points">Points</string>
     <string name="map">Map</string>
-    <string name="lucky_wheel">Lucky Wheel</string>
     <string name="chat">Chat</string>
     <string name="share">Share</string>
     <string name="logout">Logout</string>

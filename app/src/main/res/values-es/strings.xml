@@ -5,14 +5,12 @@
     <string name="close_menu">Cerrar cajón de navegación</string>
     <string name="profile_">Perfil</string>
     <string name="downloads">Descargas</string>
-    <string name="favorites">Favoritos</string>
     <string name="anonymous">Anónimo</string>
     <string name="explore">Explorar</string>
     <string name="premium">Premium</string>
     <string name="ranking">Clasificación</string>
     <string name="points">Puntos</string>
     <string name="map">Mapa</string>
-    <string name="lucky_wheel">rueda de la suerte</string>
     <string name="chat">Charlar</string>
     <string name="share">Compartir</string>
     <string name="logout">Cerrar sesión</string>
