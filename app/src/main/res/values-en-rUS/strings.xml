@@ -1,24 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">SoccerJoking</string>
-    <string name="open_menu">Open Navigation Drawer</string>
-    <string name="close_menu">Close Navigation Drawer</string>
-    <string name="profile_">Profile</string>
-    <string name="downloads">Downloads</string>
-    <string name="favorites">Favorites</string>
-    <string name="anonymous">Anonymous</string>
-    <string name="explore">Explore</string>
-    <string name="premium">Premium</string>
-    <string name="ranking">Ranking</string>
-    <string name="points">Points</string>
-    <string name="map">Map</string>
-    <string name="lucky_wheel">Lucky Wheel</string>
-    <string name="chat">Chat</string>
-    <string name="share">Share</string>
-    <string name="logout">Logout</string>
+    <string name="gallery">My Uploads</string>
     <string name="description">Description</string>
     <string name="tag">Select a tag for the meme</string>
     <string name="upload_meme">Choose File</string>
     <string name="post_meme">Send</string>
+    <string name="app_name">Soccer Jokes</string>
     <string name="send">Send</string>
 </resources>

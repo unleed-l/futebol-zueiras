@@ -4,70 +4,78 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
+
 import java.io.ByteArrayOutputStream;
 
 public class MemeInteractions extends AppCompatActivity {
-
     ImageView imgview;
-    byte [] meme_image;
+    String meme_image;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meme_interactions);
 
-        // Pega o array de bytes da imagem(meme)
-        meme_image = getIntent().getExtras().getByteArray("meme_image");
+        // Obtendo a imagem (meme)
+        meme_image = getIntent().getExtras().getString("Image");
 
-        // Acha o imageView(Background da tela)
+        // Encontrando o ImageView (fundo da tela)
         imgview = findViewById(R.id.backgroundMeme);
 
-        // Decodifica a imagem e seta no imageView
-        Bitmap bitmap = BitmapFactory.decodeByteArray(meme_image, 0, meme_image.length);
-        imgview.setImageBitmap(bitmap);
+        // Carregando a imagem utilizando uma biblioteca de terceiros, como Glide
+        Glide.with(this).load(meme_image).into(imgview);
 
-        ImageButton shareButton = (ImageButton) findViewById(R.id.shareButton);
+        // Configurando o botão de compartilhamento
+        ImageButton shareButton = findViewById(R.id.shareButton);
         shareButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                /*
-
-                Intent intent = new Intent(Intent.ACTION_SEND);
-              intent.setType("text/plain");
-              intent.putExtra(Intent.EXTRA_SUBJECT , "Check out this");
-              intent.putExtra(Intent.EXTRA_TEXT , "yOUR APLICAition link here");
-              startActivity(Intent.createChooser(intent , "Share via"));
-
-                */
-
-                Intent intent = new Intent(Intent.ACTION_SEND);
-                intent.setType("image/*");
-                byte[] imageBytes = meme_image;
-                intent.putExtra(Intent.EXTRA_STREAM, getImageUriFromBytes(imageBytes));
-                startActivity(Intent.createChooser(intent, "Compartilhar imagem via"));
-
-                // Log.d("ImageButton", "O botão foi tocado!");
+                shareImage();
             }
         });
     }
+
+    // Método responsável por compartilhar a imagem
+    private void shareImage() {
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("image/*");
+
+        // Obtendo os bytes da imagem do ImageView
+        byte[] imageBytes = getBytesFromImageView(imgview);
+
+        // Convertendo os bytes em URI para compartilhamento
+        Uri imageUri = getImageUriFromBytes(imageBytes);
+
+        // Adicionando a imagem e texto extra à intent de compartilhamento
+        intent.putExtra(Intent.EXTRA_STREAM, imageUri);
+        intent.putExtra(Intent.EXTRA_TEXT , "Link do app");
+
+        // Iniciando a atividade de compartilhamento
+        startActivity(Intent.createChooser(intent, "Compartilhar imagem via"));
+    }
+
+    // Método para converter bytes em URI
     private Uri getImageUriFromBytes(byte[] imageBytes) {
-        ByteArrayOutputStream stream = new ByteArrayOutputStream();
         Bitmap bitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
         String path = MediaStore.Images.Media.insertImage(getContentResolver(), bitmap, "Image", null);
         return Uri.parse(path);
     }
 
-
-
-
+    // Método para obter bytes de um ImageView
+    private byte[] getBytesFromImageView(ImageView imageView) {
+        BitmapDrawable drawable = (BitmapDrawable) imageView.getDrawable();
+        Bitmap bitmap = drawable.getBitmap();
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+        return stream.toByteArray();
+    }
 }

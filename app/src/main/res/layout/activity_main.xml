@@ -20,7 +20,7 @@
             android:layout_height="56dp"
             android:id="@+id/toolbar"
             android:elevation="4dp"
-            android:background="@color/green"
+            android:background="@color/fut_green"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             android:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
@@ -32,19 +32,6 @@
         </FrameLayout>
 
     </LinearLayout>
-
-
-
-    <com.google.android.material.navigation.NavigationView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:id="@+id/nav_view"
-        android:layout_gravity="start"
-        app:headerLayout="@layout/nav_header"
-        app:menu="@menu/nav_menu"
-        app:itemIconTint="@color/light_green"
-        app:itemTextColor="@color/light_green"/>
-
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
@@ -70,16 +57,6 @@
                 app:menu="@menu/bottom_menu" />
 
         </com.google.android.material.bottomappbar.BottomAppBar>
-    <!--
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/white"
-                android:src="@drawable/baseline_add_circle_24"
-                app:layout_anchor="@id/bottomAppBar"
-                app:maxImageSize="40dp"
-                android:id="@+id/fab"
-                app:tint="@color/light_green" />-->
 
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

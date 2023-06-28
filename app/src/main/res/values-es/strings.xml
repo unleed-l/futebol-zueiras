@@ -1,24 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Futebol Zueiras</string>
-    <string name="open_menu">Abrir cajón de navegación</string>
-    <string name="close_menu">Cerrar cajón de navegación</string>
-    <string name="profile_">Perfil</string>
-    <string name="downloads">Descargas</string>
-    <string name="favorites">Favoritos</string>
-    <string name="anonymous">Anónimo</string>
-    <string name="explore">Explorar</string>
-    <string name="premium">Premium</string>
-    <string name="ranking">Clasificación</string>
-    <string name="points">Puntos</string>
-    <string name="map">Mapa</string>
-    <string name="lucky_wheel">rueda de la suerte</string>
-    <string name="chat">Charlar</string>
-    <string name="share">Compartir</string>
-    <string name="logout">Cerrar sesión</string>
+    <string name="gallery">Mis envíos</string>
     <string name="description">Descripción</string>
     <string name="tag">Seleccione una etiqueta para el meme</string>
     <string name="upload_meme">Elija el archivo</string>
     <string name="post_meme">Enviar</string>
+    <string name="app_name">Chistes de futbol</string>
     <string name="send">Enviar</string>
 </resources>

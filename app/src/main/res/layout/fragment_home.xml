@@ -6,13 +6,12 @@
     android:background="@color/white"
     tools:context=".HomeFragment">
 
-    <GridView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/memeView"
-        android:numColumns="2"
-        android:gravity="center"
-        android:horizontalSpacing="8dp"
-        />
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:paddingBottom="100dp" />
 
 </FrameLayout>

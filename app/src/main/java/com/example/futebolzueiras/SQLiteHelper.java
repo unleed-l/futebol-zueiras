@@ -35,7 +35,6 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         statement.executeInsert();
     }
 
-
     // Retorna todos os memes
     public Cursor getData(String sql){
         SQLiteDatabase database = getReadableDatabase();
