@@ -6,16 +6,7 @@ public class Meme {
     private String description;
     private String tag;
     private byte[] image;
-
-    public String getMemeURL() {
-        return memeURL;
-    }
-
-    public void setMemeURL(String memeURL) {
-        this.memeURL = memeURL;
-    }
-
-    String memeURL;
+    private String memeURL;
 
 
     public Meme(int id, String description, String tag, byte[] image) {
@@ -56,6 +47,14 @@ public class Meme {
 
     public void setTag(String tag) {
         this.tag = tag;
+    }
+
+    public String getMemeURL() {
+        return memeURL;
+    }
+
+    public void setMemeURL(String memeURL) {
+        this.memeURL = memeURL;
     }
 
     public byte[] getImage() {

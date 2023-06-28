@@ -34,7 +34,9 @@
         android:layout_marginBottom="30dp"
         android:ems="10"
         android:hint="@string/description"
-        android:inputType="text" />
+        android:inputType="text"
+        android:textColor="#004A03"
+        android:textColorHint="#1C471E" />
 
     <EditText
         android:id="@+id/et_tag"
@@ -44,7 +46,9 @@
         android:layout_marginBottom="50dp"
         android:ems="10"
         android:hint="@string/tag"
-        android:inputType="text" />
+        android:inputType="text"
+        android:textColor="#004A03"
+        android:textColorHint="#1C471E" />
 
     <Button
         android:id="@+id/btn_send"

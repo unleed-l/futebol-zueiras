@@ -6,11 +6,28 @@
     android:background="@color/white"
     tools:context=".HomeFragment">
 
+    <!--
+    <androidx.appcompat.widget.SearchView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:id="@+id/search"
+        android:iconifiedByDefault="false"
+        android:searchHintIcon="@null"
+        android:queryHint="Search..."
+        android:focusable="false"
+        android:searchIcon="@drawable/baseline_search_24"/>
+        -->
+
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:orientation="horizontal" />
+        android:orientation="horizontal"
+        android:paddingBottom="100dp" />
 
 </FrameLayout>
