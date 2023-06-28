@@ -182,7 +182,7 @@ public class UploadFragment extends Fragment {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
         String currentDate = dateFormat.format(new Date());
 
-        FirebaseDatabase.getInstance().getReference("Meme Teste").child(currentDate)
+        FirebaseDatabase.getInstance().getReference("Memes").child(currentDate)
                 .setValue(meme);
     }
 

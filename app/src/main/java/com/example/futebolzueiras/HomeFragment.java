@@ -53,7 +53,7 @@ public class HomeFragment extends Fragment {
         recyclerView.setAdapter(adapter);
 
         // Obtendo referência para o banco de dados Firebase
-        databaseReference = FirebaseDatabase.getInstance().getReference("Meme Teste");
+        databaseReference = FirebaseDatabase.getInstance().getReference("Memes");
 
         // Exibindo o diálogo de carregamento
         dialog.show();
