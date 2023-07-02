@@ -22,7 +22,7 @@
             android:id="@+id/shareButton"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:background="@null"
+            android:background="@drawable/round_button_background"
             android:src="@drawable/baseline_share_24" />
 
     </LinearLayout>

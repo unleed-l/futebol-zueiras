@@ -2,6 +2,7 @@ package com.example.futebolzueiras;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,7 +50,15 @@ public class MemeRecyclerAdapter extends RecyclerView.Adapter<MemeRecyclerAdapte
                 // Abrir a atividade MemeInteractions ao clicar no item
                 Intent intent = new Intent(context, MemeInteractions.class);
                 intent.putExtra("Image", dataList.get(holder.getAdapterPosition()).getMemeURL());
+                intent.putExtra("Description", dataList.get(holder.getAdapterPosition()).getDescription());
                 context.startActivity(intent);
+
+                // Registra o toque do meme para expandir
+                FirebaseAnalytics mFirebaseAnalytics = FirebaseAnalytics.getInstance(view.getContext());
+                Bundle bundle = new Bundle();
+                bundle.putString("description",dataList.get(holder.getAdapterPosition()).getDescription());
+                bundle.putString("tag",dataList.get(holder.getAdapterPosition()).getTag());
+                mFirebaseAnalytics.logEvent("Toque_no_meme", bundle);
             }
         });
     }

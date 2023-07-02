@@ -19,7 +19,7 @@ import java.io.ByteArrayOutputStream;
 
 public class MemeInteractions extends AppCompatActivity {
     ImageView imgview;
-    String meme_image;
+    String meme_image , meme_description;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +28,7 @@ public class MemeInteractions extends AppCompatActivity {
 
         // Obtendo a imagem (meme)
         meme_image = getIntent().getExtras().getString("Image");
+        meme_description = getIntent().getExtras().getString("Description");
 
         // Encontrando o ImageView (fundo da tela)
         imgview = findViewById(R.id.backgroundMeme);
@@ -62,6 +63,12 @@ public class MemeInteractions extends AppCompatActivity {
 
         // Iniciando a atividade de compartilhamento
         startActivity(Intent.createChooser(intent, "Compartilhar imagem via"));
+
+        // Registra o compartilhamento do meme
+        FirebaseAnalytics mFirebaseAnalytics = FirebaseAnalytics.getInstance(getApplicationContext());
+        Bundle bundle = new Bundle();
+        bundle.putString("description", meme_description);
+        mFirebaseAnalytics.logEvent("Compartilhamento_de_meme", bundle);
     }
 
     // Método para converter bytes em URI

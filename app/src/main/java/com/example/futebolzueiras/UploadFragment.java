@@ -36,6 +36,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -106,19 +107,34 @@ public class UploadFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 try {
-                    saveMemeOnFirebase();
+
+                    String description = et_description.getText().toString().trim();
+                    String tag = et_tag.getText().toString().trim();
+
+                    Meme meme = new Meme();
+                    meme.setDescription(description);
+                    meme.setTag(tag);
+
+                    saveMemeOnFirebase(meme);
 
                     // Insere o meme na tabela MEME do banco de dados
                     MainActivity.sqLiteHelper.insertMeme(
-                            et_description.getText().toString().trim(),
-                            et_tag.getText().toString().trim(),
+                            description,
+                            tag,
                             imageViewToByte(imageView)
                     );
 
                     Toast.makeText(getActivity(), "Added successfully!", Toast.LENGTH_SHORT).show();
 
+                    // Registra o upload do meme
+                    FirebaseAnalytics mFirebaseAnalytics = FirebaseAnalytics.getInstance(getContext());
+                    Bundle bundle = new Bundle();
+                    bundle.putString("description",description);
+                    bundle.putString("tag", tag);
+                    mFirebaseAnalytics.logEvent("Envio_de_meme", bundle);
+
                     // Limpa os campos após o envio do meme
-                    // clearform();
+                    clearForm();
 
                     // Navega para o fragmento de perfil
                     ((MainActivity) requireActivity()).replaceFragment(new ProfileFragment());
@@ -138,7 +154,7 @@ public class UploadFragment extends Fragment {
     }
 
     // Salva o meme no Firebase Storage
-    public void saveMemeOnFirebase() {
+    public void saveMemeOnFirebase(Meme meme) {
         StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("Meme Images")
                 .child(selectedImage.getLastPathSegment());
 
@@ -152,7 +168,7 @@ public class UploadFragment extends Fragment {
                         if (task.isSuccessful()) {
                             Uri urlImage = task.getResult();
                             imageURL = urlImage.toString();
-                            uploadData();
+                            uploadData(meme);
                         } else {
                             // Tratar falha ao obter a URL da imagem
                         }
@@ -168,11 +184,12 @@ public class UploadFragment extends Fragment {
     }
 
     // Envia os dados do meme para o Firebase Realtime Database
-    public void uploadData() {
-        description = et_description.getText().toString();
-        tag = et_tag.getText().toString();
+    public void uploadData(Meme meme) {
+        //description = et_description.getText().toString();
+        //tag = et_tag.getText().toString();
 
-        Meme meme = new Meme(description, tag);
+        // Meme meme = new Meme(description, tag);
+
         meme.setMemeURL(imageURL);
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
