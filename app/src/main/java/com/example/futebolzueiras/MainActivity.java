@@ -9,16 +9,22 @@ import android.os.Bundle;
 import android.view.Menu;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 public class MainActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     public static SQLiteHelper sqLiteHelper;
+
+    private FirebaseAnalytics mFirebaseAnalytics;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Instancia classe de gerenciamento de banco de dados que é utilizada nos fragments
+        // Obtain the FirebaseAnalytics instance.
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+
+        // Instancia classe de gerenciamento de banco de dados que é utilizada no fragment "Meus Envios"
         sqLiteHelper = new SQLiteHelper(this, "MemeDB.sqlite" , null , 1);
 
         bottomNavigationView = findViewById(R.id.bottomNavigationView);

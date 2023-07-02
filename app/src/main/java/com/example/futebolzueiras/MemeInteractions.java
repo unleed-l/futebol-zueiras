@@ -13,6 +13,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.io.ByteArrayOutputStream;
 
@@ -66,7 +67,8 @@ public class MemeInteractions extends AppCompatActivity {
     // Método para converter bytes em URI
     private Uri getImageUriFromBytes(byte[] imageBytes) {
         Bitmap bitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
-        String path = MediaStore.Images.Media.insertImage(getContentResolver(), bitmap, "Image", null);
+        String title = ("Image_" + System.currentTimeMillis());
+        String path = MediaStore.Images.Media.insertImage(getContentResolver(), bitmap, title, null);
         return Uri.parse(path);
     }
 

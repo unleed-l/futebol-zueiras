@@ -48,7 +48,7 @@ public class ProfileFragment extends Fragment {
 
             // Criar um objeto Meme e adicioná-lo à lista
             Meme meme = new Meme(id, description, tag, image);
-            memeList.add(meme);
+            memeList.add(0, meme);
         }
 
         // Fechar o cursor após o uso

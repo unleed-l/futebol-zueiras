@@ -42,11 +42,6 @@ public class HomeFragment extends Fragment {
         GridLayoutManager gridLayoutManager = new GridLayoutManager(requireContext(), 2);
         recyclerView.setLayoutManager(gridLayoutManager);
 
-        // Criação do AlertDialog
-        AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
-        builder.setCancelable(false);
-        AlertDialog dialog = builder.create();
-
         // Inicialização das listas e do adapter
         memeList = new ArrayList<>();
         adapter = new MemeRecyclerAdapter(requireContext(), memeList);
@@ -54,9 +49,6 @@ public class HomeFragment extends Fragment {
 
         // Obtendo referência para o banco de dados Firebase
         databaseReference = FirebaseDatabase.getInstance().getReference("Memes");
-
-        // Exibindo o diálogo de carregamento
-        dialog.show();
 
         // Definindo o listener para obter os dados do Firebase
         eventListener = databaseReference.addValueEventListener(new ValueEventListener() {
@@ -67,19 +59,18 @@ public class HomeFragment extends Fragment {
                     // Obtendo o Meme do snapshot
                     Meme meme = itemSnapshot.getValue(Meme.class);
                     // Adicionando o Meme à lista
-                    memeList.add(meme);
+                    memeList.add(0, meme);
                 }
                 // Notificando o adapter sobre as mudanças nos dados
                 adapter.notifyDataSetChanged();
-                // Fechando o diálogo de carregamento
-                dialog.dismiss();
             }
+
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                // Em caso de erro, fechar o diálogo de carregamento
-                dialog.dismiss();
+                // Mostrar mensagem de erro
             }
+
         });
 
         return view;

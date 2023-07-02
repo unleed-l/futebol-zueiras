@@ -141,10 +141,7 @@ public class UploadFragment extends Fragment {
     public void saveMemeOnFirebase() {
         StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("Meme Images")
                 .child(selectedImage.getLastPathSegment());
-        AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
-        builder.setCancelable(false);
-        AlertDialog dialog = builder.create();
-        dialog.show();
+
         storageReference.putFile(selectedImage).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -159,14 +156,13 @@ public class UploadFragment extends Fragment {
                         } else {
                             // Tratar falha ao obter a URL da imagem
                         }
-                        dialog.dismiss();
                     }
                 });
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                dialog.dismiss();
+                // Mostrar mensagem de erro
             }
         });
     }
