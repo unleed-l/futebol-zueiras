@@ -1,4 +1,4 @@
-package com.example.futebolzueiras;
+package com.omnicoffee.futebolzueiras;
 
 import android.database.Cursor;
 import android.os.Bundle;
@@ -7,6 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
+
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 import java.util.ArrayList;
 
@@ -26,6 +29,11 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflar o layout para este fragmento
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
+
+        // Solicitando e carregando anúncio no adView
+        AdView mAdView = view.findViewById(R.id.adView1);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
         // Encontrar o GridView no layout pelo ID
         gridView = view.findViewById(R.id.gridView);

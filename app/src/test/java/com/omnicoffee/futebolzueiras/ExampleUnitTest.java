@@ -1,4 +1,4 @@
-package com.example.futebolzueiras;
+package com.omnicoffee.futebolzueiras;
 
 import org.junit.Test;
 
