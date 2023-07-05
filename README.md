@@ -4,6 +4,13 @@ App Android de compartilhamento de memes de futebol para você zuar os seus amig
 <br/>
 Soccer meme sharing Android app for you to make fun of your friends from the rival team with every goal of the match!!
 
+## Especificações atendidas
+* Funcionar para a plataforma Android;
+* Versionamento no GitHub;
+* Interface baseada em Material Design for Android. 
+* Internacionalização - Disponível em Português, Inglês e Espanhol. 
+* Recursos como : Permissão e Preferencias, Google Analytics, Firebase e persistência em SQLite;
+
 ## Concepção
 * [Mapa Conceitual](https://imgur.com/a/VPmzP5f)
 * [Storyboard](https://imgur.com/a/Fesjogy)
