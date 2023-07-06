@@ -79,8 +79,6 @@ public class UploadFragment extends Fragment {
         btn_choose_file = view.findViewById(R.id.btn_choose_file);
         imageView = (ImageView) view.findViewById(R.id.image_profile);
 
-        // Criação da tabela MEME no banco de dados
-        MainActivity.sqLiteHelper.queryData("CREATE TABLE IF NOT EXISTS MEME (Id INTEGER PRIMARY KEY AUTOINCREMENT, description VARCHAR ,tag VARCHAR,  image BLOB)");
 
         // Carrega os dados do meme das preferências
         loadMemeData();

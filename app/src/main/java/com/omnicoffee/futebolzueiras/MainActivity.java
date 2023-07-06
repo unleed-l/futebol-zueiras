@@ -38,6 +38,9 @@ public class MainActivity extends AppCompatActivity {
         // Instancia classe de gerenciamento de banco de dados que é utilizada no fragment "Meus Envios"
         sqLiteHelper = new SQLiteHelper(this, "MemeDB.sqlite" , null , 1);
 
+        // Criação da tabela MEME no banco de dados
+        sqLiteHelper.queryData("CREATE TABLE IF NOT EXISTS MEME (Id INTEGER PRIMARY KEY AUTOINCREMENT, description VARCHAR ,tag VARCHAR,  image BLOB)");
+
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
