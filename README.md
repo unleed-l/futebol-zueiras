@@ -29,6 +29,7 @@ Soccer meme sharing Android app for you to make fun of your friends from the riv
 * [Vídeo de Apresentação - 1ª Versão](https://youtu.be/lE5SZxY7W0Y)
 * [Vídeo de Apresentação - 2ª Versão](https://youtu.be/bGa-NTGsvb8)
 * [Link do APK](https://drive.google.com/drive/folders/10iEKt7_sW8TcbsQi9TTwLmZqcHCjRHAD?usp=sharing)
+* [Google Play Store](https://play.google.com/store/apps/details?id=com.omnicoffee.futebolzueiras)
 
 ## Autores
 * [Pedro Benevides](https://github.com/Pedro-Benevides)
