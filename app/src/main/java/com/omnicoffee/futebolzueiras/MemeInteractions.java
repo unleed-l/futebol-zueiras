@@ -59,7 +59,7 @@ public class MemeInteractions extends AppCompatActivity {
 
         // Adicionando a imagem e texto extra à intent de compartilhamento
         intent.putExtra(Intent.EXTRA_STREAM, imageUri);
-        intent.putExtra(Intent.EXTRA_TEXT , "Link do app");
+        intent.putExtra(Intent.EXTRA_TEXT , "https://play.google.com/store/apps/details?id=com.omnicoffee.futebolzueiras");
 
         // Iniciando a atividade de compartilhamento
         startActivity(Intent.createChooser(intent, "Compartilhar imagem via"));
